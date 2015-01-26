@@ -8,10 +8,11 @@ int main()
 
 	cout << "Enter a positive integer: ";
 	cin >> binaryNumber;
+	cout << binaryNumber << " at base 2 is";
 
 	for(int i = 15; i >= 0; i--)
 	{
-		if(i == 11 || i == 7 || i == 3)
+		if(i % 4 == 3)
 		{
 			cout << " ";
 		}
