@@ -1,1 +1,2 @@
-while(fahr < uppper) a := 23.00
+while ( fahr < uppper ) a := 23.00
+    return true 

@@ -8,15 +8,25 @@ def LoadFile(fileName):
     myList = []
     with open(fileName, 'r') as inputfh:
         for line in inputfh:
-            line = line.rstrip()
+            line = line.strip()
             myList.append(line)
         return myList
         
-def ParseTokens(source):
+def ParseTokens(sourceFile, tokenList):
     tokenList = []
-    for line in source:
-        for letter in line:
-            print(letter)
+    token = ""
+    with open(sourceFile, 'r') as inputfh:
+        for line in inputfh:
+            for letter in line:
+                if letter != ' ':
+                    token += letter
+                elif token == '':
+                    token = ""
+                else:
+                    token = token.strip()
+                    tokenList.append(token)
+                    token = ""
+        return tokenList
 
 #print(len(keyword))
 #for i in range(0,len(keyword)):
@@ -35,11 +45,12 @@ def FindKeyword(token, fList):
 #            for letter in line:
 
 def main():
+    lexeme = []
     keywordList = LoadFile("keywords.txt")
     seperatorList = LoadFile("seperators.txt")
     operatorList = LoadFile("operators.txt")
-    sourceCode = LoadFile("source.txt")
-    ParseTokens(sourceCode)
+    lexeme = ParseTokens("source.txt", lexeme)
+    print(lexeme)
             
         
 if __name__ == "__main__":
