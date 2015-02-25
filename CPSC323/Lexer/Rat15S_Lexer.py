@@ -12,7 +12,7 @@ def LoadFile(fileName):
             myList.append(line)
         return myList
         
-def ParseTokens(sourceFile, tokenList):
+def ParseTokens(sourceFile):
     tokenList = []
     token = ""
     with open(sourceFile, 'r') as inputfh:
@@ -28,6 +28,27 @@ def ParseTokens(sourceFile, tokenList):
                     token = ""
         return tokenList
 
+def TokenIdent(listOfTokens, keywords, separators, operators):
+    lexemes = listOfTokens
+    tokenId = []
+    identified = False
+    for i in range(0,len(lexemes)):
+        for j in range(0, len(keywords)):
+            if lexemes[i] == keywords[j]:
+                tokenId.append("keyword")
+                identified = True
+        for k in range(0, len(separators)): 
+            if lexemes[i] == separators[k]:
+                tokenId.append("seperator")
+                identified = True
+        for l in range(0, len(operators)):
+            if lexemes[i] == operators[l]:
+                tokenId.append("operator")
+                identified = True
+        if(identified == False):
+            tokenId.append(" ")     
+    return tokenId 
+        
 #print(len(keyword))
 #for i in range(0,len(keyword)):
 #        print(keyword[i])
@@ -47,12 +68,17 @@ def FindKeyword(token, fList):
 def main():
     lexeme = []
     keywordList = LoadFile("keywords.txt")
-    seperatorList = LoadFile("seperators.txt")
+    separatorList = LoadFile("separators.txt")
     operatorList = LoadFile("operators.txt")
-    lexeme = ParseTokens("source.txt", lexeme)
+    lexeme = ParseTokens("source.txt")
+    
+    idOfTokens = TokenIdent(lexeme, keywordList, separatorList, operatorList)
+    
+    print(len(idOfTokens))
+    print(idOfTokens)
+    print(len(lexeme))
     print(lexeme)
-            
-        
+         
 if __name__ == "__main__":
   main( )
 
