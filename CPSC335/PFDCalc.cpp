@@ -12,13 +12,13 @@ int main()
 	int sizeOfRecords;
 	int t1, t2, t3;
 	int PFD[4] = {3, 1, 1, 1};	
-	int tapeDrives[4][15] = {0};
+	int tapeDrives[4][100] = {0};
 	
 	//
 	cout << "Enter number of records in file f: ";
 	cin >> sizeOfRecords;
 	cout << "This is the PFD table.\n";
-	cout  << endl << " " << "t1 " << "t2 " << "t3" << endl;
+	cout << " " << "t1 " << "t2 " << "t3" << endl;
 	cout << "___________\n";
 	cout << " " << PFD[1] << "  " << PFD[2] << "  " << PFD[3];  
 	while(PFD[0] < sizeOfRecords)
@@ -38,7 +38,7 @@ int main()
 		}
 	}
 	cout << endl;
-	cout << "_____________" << endl << endl;
+	cout << "___________" << endl << endl;
 	//
 	tapeDrives[0][0] = sizeOfRecords;
 	if(sizeOfRecords != PFD[0] )
@@ -53,14 +53,14 @@ int main()
 	tapeDrives[3][1] = PFD[3];
 	//
 	int phase = 2;
-	int min = 100;
-	int recordsToProcess = sizeOfRecords;
+	int min = tapeDrives[0][0];
+	int recordsToProcess = tapeDrives[0][0];
 
 	while(recordsToProcess > 1)
 	{
-		for(int i = 1; i <= 3; i++)
-		{
-			if(tapeDrives[i][phase - 1] < tapeDrives[i - 1][phase - 1] && tapeDrives[i][phase - 1] != 0)
+		for(int i = 0; i <= 3; i++)
+		{	
+			if( min > tapeDrives[i][phase - 1] && tapeDrives[i][phase - 1] != 0)
 			{
 				min = tapeDrives[i][phase - 1];
 				tapeDrives[i][phase] = 0;
@@ -78,6 +78,8 @@ int main()
 		phase++;
 	}
 	//
+	cout << " " << "f " << " t1" << " t2" << " t3\n";
+	cout << "____________\n";
 	for (int i = 0; i < phase; i++)
 	{
 		for (int j = 0; j < 4; j++)
