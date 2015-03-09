@@ -17,17 +17,36 @@
 #include <sys/wait.h>
 #include <fstream>
 #include <vector>
+#include <cstring>
 using namespace std;
 
 int main()
 {
+    char url[250];
+    ifstream inFile;
     pid_t pid;
-    pid = fork();
-    if(pid == 0)
+    inFile.open("URLS for Assignment - 1.txt");
+    if(!inFile.is_open())
     {
-        execlp("/usr/bin/wget", "wget","http://www.cisco.com/networkers/nw04/presos/docs/NMS-1N02.pdf", NULL);
+        cout << "Failed to open file!\n";
     }
-    else
-        wait(NULL);
-    return 0;
+    
+    while(!inFile.eof())
+    {
+        inFile >> url;    
+    
+        pid = fork();
+        if(pid == 0) // Child process
+        {
+            execlp("/usr/bin/wget", "wget",url , NULL);
+        }   
+        else
+            wait(NULL);
+    }
+        return 0;
 }
+
+
+
+
+
