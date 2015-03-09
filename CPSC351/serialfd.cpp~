@@ -10,6 +10,6 @@ using namespace std;
 
 int main()
 {
-    
+    fork();
     retun 0;
 }
