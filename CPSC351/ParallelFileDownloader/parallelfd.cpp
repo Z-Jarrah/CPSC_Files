@@ -30,13 +30,18 @@ int main()
     {
         cout << "Failed to open file!\n";
     }
-    fork();
-    fork();
-    fork();
-    fork();
-    fork();
-    fork();
-    fork();
     
+    //fork off 7 times because there are 7 urls
+    //typing pid = fork(); 7 times doesn't work
+    //Are the processes colliding while accessing the file? How do I manage it?
+    pid = fork(); 
+    pid = fork();
+    if(pid == 0) /* Child process*/
+    {
+        inFile >> url;
+        execlp("/usr/bin/wget", "wget",url , NULL);
+    }
+    wait(NULL);
+        
     return 0;
 }
