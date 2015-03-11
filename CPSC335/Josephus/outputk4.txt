@@ -1,0 +1,20 @@
+People: 2 K = 4 Person 1 is the last remaining.
+People: 3 K = 4 Person 2 is the last remaining.
+People: 4 K = 4 Person 2 is the last remaining.
+People: 5 K = 4 Person 1 is the last remaining.
+People: 6 K = 4 Person 5 is the last remaining.
+People: 7 K = 4 Person 2 is the last remaining.
+People: 8 K = 4 Person 6 is the last remaining.
+People: 9 K = 4 Person 1 is the last remaining.
+People: 10 K = 4 Person 5 is the last remaining.
+People: 11 K = 4 Person 9 is the last remaining.
+People: 12 K = 4 Person 1 is the last remaining.
+People: 13 K = 4 Person 5 is the last remaining.
+People: 14 K = 4 Person 9 is the last remaining.
+People: 15 K = 4 Person 13 is the last remaining.
+People: 16 K = 4 Person 1 is the last remaining.
+People: 17 K = 4 Person 5 is the last remaining.
+People: 18 K = 4 Person 9 is the last remaining.
+People: 19 K = 4 Person 13 is the last remaining.
+People: 20 K = 4 Person 17 is the last remaining.
+
