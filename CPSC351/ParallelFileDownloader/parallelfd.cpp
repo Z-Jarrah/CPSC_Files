@@ -22,6 +22,7 @@ using namespace std;
 int main()
 {
     char url[250];
+    int numOfUrls = 0;
     ifstream inFile;
     pid_t pid;
     
@@ -31,17 +32,25 @@ int main()
         cout << "Failed to open file!\n";
     }
     
-    //fork off 7 times because there are 7 urls
-    //typing pid = fork(); 7 times doesn't work
-    //Are the processes colliding while accessing the file? How do I manage it?
-    pid = fork(); 
-    pid = fork();
-    if(pid == 0) /* Child process*/
+    while(!inFile.eof())
     {
         inFile >> url;
-        execlp("/usr/bin/wget", "wget",url , NULL);
+        ++numOfUrls;
+        pid = fork();
+   
+        if(pid == 0) /* Child process*/
+        {
+            execlp("/usr/bin/wget", "child",url , NULL);
+        }
     }
-    wait(NULL);
+    
+    for(int i = 0; i < numOfUrls; i++)
+    {
+        wait(NULL);
+    }
         
     return 0;
 }
+
+
+

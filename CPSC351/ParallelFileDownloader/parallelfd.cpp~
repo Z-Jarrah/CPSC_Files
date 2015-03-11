@@ -21,7 +21,8 @@ using namespace std;
 
 int main()
 {
-    char url[250];
+    string url;
+    int numOfUrls = 0;
     ifstream inFile;
     pid_t pid;
     
@@ -30,13 +31,26 @@ int main()
     {
         cout << "Failed to open file!\n";
     }
-    fork();
-    fork();
-    fork();
-    fork();
-    fork();
-    fork();
-    fork();
     
+    while(!inFile.eof())
+    {
+        inFile >> url;
+        ++numOfUrls;
+        pid = fork();
+   
+        if(pid == 0) /* Child process*/
+        {
+            execlp("/usr/bin/wget", "child",url , NULL);
+        }
+    }
+    
+    for(int i = 0; i < numOfUrls; i++)
+    {
+        wait(NULL);
+    }
+        
     return 0;
 }
+
+
+
