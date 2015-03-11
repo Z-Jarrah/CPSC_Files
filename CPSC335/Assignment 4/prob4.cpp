@@ -11,7 +11,7 @@ struct Node
 	Node* next;
 };
 
-void InsertWord(Node* h[], string word);
+Node* InsertWord(Node* h[], string word);
 
 int main()
 {
@@ -26,14 +26,22 @@ int main()
 	
 	for(int i = 0; i < 16; i++)
 	{
-		InsertWord(hashTable, string(words[i]));
+		int k = int(words[i].at(0)) - 65;
+		hashTable[k] = InsertWord(hashTable, string(words[i]));
 	}
-
+	Node* tmp;
+	for(int i = 0; i < 26; i++)
+	{
+		while(hashTable[i] != NULL)
+		{
+			cout <<hashTable[i]->info << endl;
+		}
+	}
 	cout << endl;
 	return 0;
 }
 
-void InsertWord(Node* h[], string word)
+Node* InsertWord(Node* h[], string word)
 {
 	int index = int(word.at(0)) - 65;
 	cout << "index: " << index << endl;
@@ -47,12 +55,17 @@ void InsertWord(Node* h[], string word)
 	}
 	else
 	{
-		Node* p = h[index];
-		Node* q;
-		while(p->next != NULL)
-		{
-			q = p;
-			p = p->next;
-		}
+		h[index]->next = t;
 	}
+	//else
+	//{
+	//	Node* p = h[index];
+	//	Node* q;
+	//	while(p->next != NULL)
+	//	{
+	//		q = p;
+	//		p = p->next;
+	//	}
+	//}
+	return h[index];
 }
