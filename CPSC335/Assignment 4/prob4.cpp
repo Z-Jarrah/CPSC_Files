@@ -32,7 +32,10 @@ int main()
 
 	for(int i = 0; i < 26; i++)
 	{
-		SortHash(hashTable[i]);
+		if(hashTable[i] != NULL)
+		{
+			SortHash(hashTable[i]);
+		}
 	}
 
 	//For debugging purposes, needs to be its own function
@@ -73,19 +76,27 @@ Node* InsertWord(Node* h[], string word)
 		}
 		tmp->next = t;
 	}
+	
 	return h[index];
 }
 
 void SortHash(Node*& h)
 {
-	// Still needs a proper sort algorithm
-	if(h != NULL)
-		cout << "From SortHash: " << h->info << endl;
-	//Node* prev = h;
-	//Node* curr = h;
-
-	//if(curr != NULL)
-	//{
-	//	curr = curr->next;
-	//}
+	//// Still needs a proper sort algorithm
+	Node* curr = h;
+	Node* prev;
+	//Sorting
+	if(curr != NULL && curr->next != NULL /*&& curr->next->info.compare(curr->info) < 0*/)
+	{
+		prev = curr;
+		curr = curr->next;
+		curr->next = prev;
+		h = curr;
+		prev->next = NULL;
+		cout << "curr " << curr->info << "prev " << prev->info << endl;
+		cout << "head is now " <<h->info << endl;
+	}
+	
 }
+
+
