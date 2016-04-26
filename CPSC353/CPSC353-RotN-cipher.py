@@ -2,7 +2,6 @@
 # Encrypts by shifting letter of the alphabet by a given number
 # Returns a ciphered message based off the provided shift
 # How to run: $python CPSC353-RotN-cipher.py <shift> <message>
-# Example: $python CPSC353-RotN-cipher.py 1 a
 # Compatible with Python3
 
 import sys
